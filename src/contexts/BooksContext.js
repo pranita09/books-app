@@ -7,16 +7,20 @@ export const BooksProvider = ({children})=>{
 
     const [books, setBooks] = useState([]);
     const [user, setUser] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const getData = async() =>{
+        setIsLoading(true);
         try {
             const response = await fakeFetch('https://example.com/api/books')
             if(response.status === 200){
                 setBooks(response.data.books);
                 setUser(response.data.user);
+                setIsLoading(false);
             }
         } catch (error) {
             console.error(error);
+            setIsLoading(false);
         }
     }
 
@@ -39,7 +43,7 @@ export const BooksProvider = ({children})=>{
     }
 
     return(
-        <BooksContext.Provider value={{ books, user, handleAddToFavBtn, handleReadToggleBtn, isBookInFav}}>
+        <BooksContext.Provider value={{ books, user, handleAddToFavBtn, handleReadToggleBtn, isBookInFav, isLoading}}>
             {children}
         </BooksContext.Provider>
     )
