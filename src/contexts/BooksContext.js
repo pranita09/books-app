@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { fakeFetch } from "../api/fakefetch";
 
 export const BooksContext = createContext();
@@ -30,3 +30,5 @@ export const BooksProvider = ({children})=>{
         </BooksContext.Provider>
     )
 }
+
+export const useBooks = () => useContext(BooksContext);
