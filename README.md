@@ -1,2 +1,2 @@
 # books-app
-Created with CodeSandbox
+Books app with pages like Home, Reads, favorites and Profile.
