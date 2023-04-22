@@ -33,8 +33,13 @@ export const BooksProvider = ({children})=>{
         return books.find((book)=> book.id === bookToCheck.id).isFavorite
     }
 
+    const handleReadToggleBtn = (bookToToggle) =>{
+        const updatedBooks = books.map((book)=> book.id === bookToToggle.id ? {...book, read: !book.read} : book)
+        setBooks(updatedBooks);
+    }
+
     return(
-        <BooksContext.Provider value={{ books, user, handleAddToFavBtn, isBookInFav}}>
+        <BooksContext.Provider value={{ books, user, handleAddToFavBtn, handleReadToggleBtn, isBookInFav}}>
             {children}
         </BooksContext.Provider>
     )

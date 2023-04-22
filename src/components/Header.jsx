@@ -4,12 +4,13 @@ import { useBooks } from "../contexts/BooksContext";
 const Header = () =>{
     const {books} = useBooks();
     const favBooksCount = books.reduce((acc, curr)=> curr.isFavorite ? acc+1 : acc,0)
+    const readBooksCount = books.reduce((acc, curr)=> curr.read ? acc+1 : acc,0)
     return(
         <>
             <nav>
                 <NavLink to='/'>All Books</NavLink> ||
                 <NavLink to='/favorites'> Favorites({favBooksCount})</NavLink> ||
-                <NavLink to='/reads'> Read</NavLink> ||
+                <NavLink to='/reads'> Read ({readBooksCount})</NavLink> ||
                 <NavLink to='profile'> Profile</NavLink>
             </nav>
         </>
